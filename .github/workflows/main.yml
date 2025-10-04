@@ -1,14 +1,27 @@
 name: CI/CD app
 
-on: 
-  push: 
+on:
+  push:
     branches:
-      -main
+      - main
+    tags:
+      - '*'
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      -name: Checkout Code
-      uses: actions/checkout@v3
 
-      -name: 
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.8.1'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Node Project
+        run: npm run build
