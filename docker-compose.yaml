@@ -17,8 +17,8 @@ services:
       - './etc-pihole:/etc/pihole'
     cap_add:
       - NET_ADMIN
+    networks:
+      - mynetwork
   restart: unless-stopped
-  networks:
-    mynetwork:
 networks:
   mynetwork:
